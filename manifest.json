@@ -1,0 +1,48 @@
+{
+    "manifest_version": 3,
+    "name": "Dive",
+    "version": "1.0.0",
+    "description": "Deep dive into language learning based on your browsing history.",
+    "permissions": [
+        "history",
+        "storage",
+        "sidePanel",
+        "scripting",
+        "activeTab",
+        "tabs",
+        "identity"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "background": {
+        "service_worker": "src/background/background.js",
+        "type": "module"
+    },
+    "side_panel": {
+        "default_path": "src/sidepanel/index.html"
+    },
+    "action": {
+        "default_title": "Open AI Adaptive Lesson"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "src/content/content.js"
+            ]
+        }
+    ],
+    "icons": {
+        "128": "public/icon128.png"
+    },
+    "oauth2": {
+        "client_id": "378240880329-vbqps9q3lqnjhgsilbh0jo4u9ohlcsja.apps.googleusercontent.com",
+        "scopes": [
+            "profile",
+            "email"
+        ]
+    }
+}

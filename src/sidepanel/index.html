@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dive - Deep Language Learning</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app" class="glass-container">
+        <header>
+            <h1>Dive</h1>
+            <p class="subtitle">Deep dive into language through your browsing</p>
+        </header>
+
+        <main id="main-content">
+            <!-- Login State -->
+            <section id="login-view" class="fade-in">
+                <h2>환영합니다</h2>
+                <p class="subtitle" style="margin-bottom: 24px; color: var(--text-secondary);">서비스를 이용하려면 로그인이 필요합니다.
+                </p>
+                <div class="input-group">
+                    <button id="google-login-btn" class="primary-btn login-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            style="margin-right: 8px; vertical-align: middle;">
+                            <path
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                fill="#4285F4" />
+                            <path
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.16v2.84C3.99 20.53 7.7 23 12 23z"
+                                fill="#34A853" />
+                            <path
+                                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.16C1.43 8.55 1 10.22 1 12s.43 3.45 1.16 4.93l3.68-2.84z"
+                                fill="#FBBC05" />
+                            <path
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.16 7.07l3.68 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                fill="#EA4335" />
+                        </svg>
+                        Google 계정으로 로그인
+                    </button>
+                    <p id="login-error" class="hidden error-text"
+                        style="color: #ef4444; margin-top: 12px; font-size: 0.8rem;"></p>
+                </div>
+            </section>
+
+            <!-- Onboarding State -->
+            <section id="onboarding" class="hidden">
+                <h2>학습 설정</h2>
+
+                <div class="input-group">
+                    <label for="learning-lang">배우고 싶은 언어</label>
+                    <select id="learning-lang">
+                        <option value="en">영어 (English)</option>
+                        <option value="ja">일본어 (日本語)</option>
+                        <option value="zh">중국어 (中文)</option>
+                        <option value="es">스페인어 (Español)</option>
+                        <option value="fr">프랑스어 (Français)</option>
+                        <option value="de">독일어 (Deutsch)</option>
+                        <option value="it">이탈리아어 (Italiano)</option>
+                        <option value="pt">포르투갈어 (Português)</option>
+                        <option value="ru">러시아어 (Русский)</option>
+                        <option value="ar">아랍어 (العربية)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>관심 있는 주제</label>
+                    <button id="detect-interests" class="secondary-btn small-btn">최근 브라우징 기록으로 분석하기 ✨</button>
+                    <div class="chip-container" id="interests-chips">
+                        <div class="chip" data-value="tech">기술/IT</div>
+                        <div class="chip" data-value="business">비즈니스</div>
+                        <div class="chip" data-value="travel">여행</div>
+                        <div class="chip" data-value="culture">예술/문화</div>
+                        <div class="chip" data-value="science">과학</div>
+                        <div class="chip" data-value="lifestyle">일상/생활</div>
+                    </div>
+                    <div id="detected-keywords" class="keyword-tags hidden"></div>
+                </div>
+
+                <div class="input-group">
+                    <label for="language-level">언어 레벨 (1-10)</label>
+                    <div class="range-container">
+                        <input type="range" id="language-level" min="1" max="10" value="3">
+                        <span id="level-display">3</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="learning-purpose">학습 목적</label>
+                    <select id="learning-purpose">
+                        <option value="travel">여행</option>
+                        <option value="employment">해외 취업 준비</option>
+                        <option value="exam">시험 (TOEIC, JLPT 등)</option>
+                        <option value="hobby">취미</option>
+                        <option value="business">실무 미팅/협상</option>
+                        <option value="manual">기타 (직접 입력)</option>
+                    </select>
+                    <input type="text" id="custom-purpose" class="hidden-input hidden" placeholder="학습 목적을 직접 입력해 주세요.">
+                </div>
+
+                <div class="input-group">
+                    <label for="learning-time">목표 학습 시간 (매일)</label>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px;">이 시간까지 스크래핑을 모아 학습
+                        회차를 생성합니다.</p>
+                    <input type="time" id="learning-time" value="20:00"
+                        style="padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.2); color: white; width: 100%;">
+                </div>
+
+                <button id="start-learning" class="primary-btn">잠수 시작하기</button>
+            </section>
+
+            <!-- Learning Stage (Hidden by default) -->
+            <section id="learning-view" class="hidden">
+                <!-- Will be populated by sidepanel.js -->
+            </section>
+
+            <!-- History Modal (Hidden by default) -->
+            <section id="history-modal" class="hidden fade-in"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 100; padding: 24px; overflow-y: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <h2>나의 학습 기록</h2>
+                    <button id="close-history" class="secondary-btn small-btn">돌아가기</button>
+                </div>
+                <div id="history-container">
+                    <!-- History items will be populated here -->
+                </div>
+            </section>
+
+            <!-- Progress Tracker Modal (Hidden by default) -->
+            <section id="progress-modal" class="hidden fade-in"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 100; padding: 24px; overflow-y: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <h2>스크래핑 진척도</h2>
+                    <button id="close-progress" class="secondary-btn small-btn">돌아가기</button>
+                </div>
+
+                <div class="glass-card" style="padding: 16px; margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 8px;">현재 학습 세션 준비 상태</h3>
+                    <div
+                        style="width: 100%; background: rgba(255,255,255,0.1); border-radius: 8px; height: 12px; overflow: hidden; margin-bottom: 8px;">
+                        <div id="scraping-progress-bar"
+                            style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--accent), #10b981); transition: width 0.3s ease;">
+                        </div>
+                    </div>
+                    <p id="scraping-progress-text"
+                        style="font-size: 0.9rem; color: var(--text-secondary); text-align: right;">0% (0 / 10 단어)</p>
+                </div>
+
+                <div class="glass-card" style="padding: 16px; margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 12px;">실시간 관심 분야 비중 (Top 5)</h3>
+                    <div id="progress-weights-container">
+                        <!-- Weights will be populated here -->
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="margin-bottom: 12px;">최근 추적된 웹사이트</h3>
+                    <div id="recent-websites-container" style="display: flex; flex-direction: column; gap: 8px;">
+                        <!-- Website items will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Restrictions Modal (Hidden by default) -->
+            <section id="restrictions-modal" class="hidden fade-in"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 100; padding: 24px; overflow-y: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <h2>스크래핑 제한 설정</h2>
+                    <button id="close-restrictions" class="secondary-btn small-btn">돌아가기</button>
+                </div>
+
+                <div class="glass-card" style="padding: 16px; margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 12px;">방해 금지 시간대 설정</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px;">지정된 시간 동안에는 웹 서핑
+                        데이터 수집(스크래핑)이 완전히 중지됩니다.</p>
+
+                    <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+                        <input type="time" id="block-start-time" value="09:00"
+                            style="padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white;">
+                        <span>~</span>
+                        <input type="time" id="block-end-time" value="18:00"
+                            style="padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white;">
+                    </div>
+                    <button id="save-time-restrictions" class="primary-btn small-btn">시간 설정 저장</button>
+                    <p id="time-save-msg" class="hidden" style="color: #10b981; font-size: 0.8rem; margin-top: 8px;">
+                        저장되었습니다.</p>
+                </div>
+
+                <div class="glass-card" style="padding: 16px;">
+                    <h3 style="margin-bottom: 12px;">웹사이트 도메인 차단</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px;">특정 도메인(Root URL)에서의
+                        스크래핑을 영구적으로 차단합니다.</p>
+
+                    <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                        <input type="text" id="domain-input" placeholder="예: github.com"
+                            style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white;">
+                        <button id="add-domain-btn" class="primary-btn small-btn">추가</button>
+                    </div>
+
+                    <div id="blocked-domains-list" style="display: flex; flex-direction: column; gap: 8px;">
+                        <!-- Blocked Domains populated here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script type="module" src="sidepanel.js"></script>
+</body>
+
+</html>

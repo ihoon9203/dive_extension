@@ -1,0 +1,411 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --bg-color: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #22d3ee;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.glass-container {
+    padding: 24px;
+    min-height: 100vh;
+    background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent),
+        radial-gradient(circle at bottom left, rgba(168, 85, 247, 0.15), transparent);
+}
+
+header {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+header .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.input-group {
+    margin-bottom: 24px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+select {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2);
+}
+
+.chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    padding: 8px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chip.selected {
+    background: var(--primary-gradient);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.chip:hover:not(.selected) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+}
+
+.range-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+input[type="range"] {
+    flex: 1;
+    cursor: pointer;
+    accent-color: #a855f7;
+}
+
+#level-display {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--accent);
+    min-width: 24px;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    filter: brightness(1.1);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+.login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: #334155;
+    font-weight: 600;
+}
+
+.login-btn:hover {
+    background: #f8fafc;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.secondary-btn.small-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: auto;
+    display: inline-block;
+}
+
+.secondary-btn.small-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.secondary-btn.small-btn.success {
+    border-color: #10b981;
+    color: #10b981;
+}
+
+.keyword-tags {
+    margin-top: 12px;
+}
+
+.small-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.keyword-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.keyword-tag {
+    font-size: 0.75rem;
+    background: rgba(34, 211, 238, 0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.hidden-input {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    border-color: var(--accent);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Learning View & Lesson Cards */
+.word-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.word-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 20px;
+    backdrop-filter: blur(16px);
+    transition: transform 0.3s ease;
+}
+
+.word-card:hover {
+    transform: scale(1.02);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.word-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.word-header h3 {
+    color: var(--accent);
+    font-size: 1.2rem;
+}
+
+.meaning {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.example {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.voice-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.practice-btn {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.practice-btn:hover {
+    background: var(--accent);
+    color: var(--bg-color);
+}
+
+/* Dialogue Box */
+#dialogue-box {
+    margin-top: 16px;
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid var(--glass-border);
+}
+
+#dialogue-messages {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-right: 8px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.message.ai {
+    align-self: flex-start;
+    background: var(--card-bg);
+    border-bottom-left-radius: 2px;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: var(--primary-gradient);
+    border-bottom-right-radius: 2px;
+}
+
+.message.system {
+    align-self: center;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+#dialogue-controls {
+    display: flex;
+    gap: 8px;
+}
+
+#mic-btn {
+    flex: 2;
+    padding: 12px;
+    background: #ef4444;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#mic-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#close-dialogue {
+    flex: 1;
+    padding: 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
